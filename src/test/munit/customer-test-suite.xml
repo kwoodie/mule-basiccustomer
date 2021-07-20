@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="customer-test-suite.xml" />
+	<munit:test name="customer-test-suite-customer-mainTest" doc:id="b606daee-7145-4818-8d43-cb1d1bb5a526" description="Test">
+		<munit:execution>
+			<flow-ref doc:name="Flow-ref to customer-main" doc:id="11f5675d-9368-4db6-a97f-e289f623cfb7" name="get:\customer:customer-config" />
+		</munit:execution>
+		<munit:validation>
+			<munit-tools:assert-that doc:name="Check Record Count" doc:id="8aeb8bc3-b02b-498b-8969-f65ddd4bc2dc" is="#[MunitTools::greaterThan(0)]" expression="#[sizeOf(payload.records)]"/>
+		</munit:validation>
+	</munit:test>
+
+</mule>
