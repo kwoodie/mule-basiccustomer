@@ -19,7 +19,7 @@ pipeline {
       }
     }
     
-    stage('Test') {
+    /*stage('Test') {
       steps {
 	      configFileProvider(
 	        [configFile(fileId: 'global-maven-settings', variable: 'MAVEN_SETTINGS')]) {
@@ -29,7 +29,7 @@ pipeline {
 	       
       		
       }
-    }
+    }*/
     
     stage('Deploy Development') {
       environment {
