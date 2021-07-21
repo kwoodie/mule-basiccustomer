@@ -11,13 +11,23 @@ pipeline {
   stages {
     stage('Build') {
       steps {
+      configFileProvider(
+        [configFile(fileId: 'global-maven-settings', variable: 'MAVEN_SETTINGS')]) {
             sh 'mvn -B -U -e -V clean -DskipTests package'
+        }
+            
       }
     }
     
     stage('Test') {
       steps {
-      		sh 'mvn test'
+	      configFileProvider(
+	        [configFile(fileId: 'global-maven-settings', variable: 'MAVEN_SETTINGS')]) {
+	            sh 'mvn test'
+	        }
+	            
+	       }
+      		
       }
     }
     
