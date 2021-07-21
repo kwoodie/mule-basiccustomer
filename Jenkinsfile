@@ -13,7 +13,7 @@ pipeline {
       steps {
       configFileProvider(
         [configFile(fileId: 'global-maven-settings', variable: 'MAVEN_SETTINGS')]) {
-            sh 'mvn -B -U -e -V clean -DskipTests package'
+            sh 'mvn -s $MAVEN_SETTINGS -B -U -e -V clean -DskipTests package'
         }
             
       }
@@ -23,7 +23,7 @@ pipeline {
       steps {
 	      configFileProvider(
 	        [configFile(fileId: 'global-maven-settings', variable: 'MAVEN_SETTINGS')]) {
-	            sh 'mvn test'
+	            sh 'mvn -s $MAVEN_SETTINGS test'
 	        }
 	            
 	       
