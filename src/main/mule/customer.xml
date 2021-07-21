@@ -7,7 +7,7 @@ http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/sc
     <http:listener-config name="customer-httpListenerConfig">
         <http:listener-connection host="0.0.0.0" port="8081" protocol="HTTPS">
 			<tls:context >
-				<tls:key-store type="jks" path="/Users/kwoodie/mulesoft-keystore.jks" alias="key-alias" keyPassword="${secure::keystorePassword}" password="password" />
+				<tls:key-store type="jks" path="mulesoft-keystore.jks" alias="key-alias" keyPassword="${secure::keystorePassword}" password="password" />
 			</tls:context>
 		</http:listener-connection>
     </http:listener-config>
