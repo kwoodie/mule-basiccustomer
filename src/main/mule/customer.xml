@@ -14,13 +14,13 @@ http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/m
     </http:listener-config>
     <apikit:config name="customer-config" api="customer.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
     <db:config name="Database_Config" doc:name="Database Config" doc:id="a77d3e50-4889-40e7-b20d-1bbd9e6e3348" >
-		<db:my-sql-connection host="localhost" port="3306" user="root" password="password" database="customers" />
+		<db:my-sql-connection host="${secure::mysqlHostname}" port="${secure::mysqlPort}" user="${secure::mysqlUsername}" password="${secure::mysqlPassword}" database="customers" />
 	</db:config>
 	<global-property doc:name="Global Property" doc:id="0cc1622a-4d16-40af-b9a0-c33326f943af" name="secure.key" value="Mulesoft" />
 	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="2774df5e-715f-442f-920e-56b10acd50a1" file="local.properties" key="${secure.key}" >
 		<secure-properties:encrypt algorithm="Blowfish" />
 	</secure-properties:config>
-	<api-gateway:autodiscovery apiId="10015" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="debea044-a2c6-4407-bc7e-7aa8dbafdd13" flowRef="get:\customer:customer-config" />
+	<api-gateway:autodiscovery apiId="17085011" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="debea044-a2c6-4407-bc7e-7aa8dbafdd13" flowRef="get:\customer:customer-config" />
 	<flow name="customer-main">
         <http:listener config-ref="customer-httpListenerConfig" path="/api/*">
             <http:response statusCode="#[vars.httpStatus default 200]">
